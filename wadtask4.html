@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Investment Calculator</title>
+</head>
+
+<body>
+    <h1>Investment Calculator</h1>
+                 
+    <label for="startAmount">Start Amount : </label>
+    <input type="number" id="startAmount" step="0.01" value="0" required> Euros <br>
+        
+    <label for="investmentPerMonth">Monthly Additional Investment : </label>
+    <input type="number" id="investmentPerMonth" step="0.01" value="0" required> Euros per Month <br>
+        
+    <label for="returns">Annual Return on Investment : </label> 
+    <input type="number" id="returns" step="0.1" value="0" required> % <br>
+    
+    <label for="yearsToInvest"> Number of Years to Invest : </label> 
+    <input type="number" id="yearsToInvest" step="1" value="0" required> years
+
+    <p style="font-style: italic">Please fill all fields</p>
+    
+    <button onclick="calculate()">Calculate</button>
+    
+    <p id="ti"></p>
+    <p id="tr"></p>
+    <p id="ta"></p>
+
+</body>
+
+<script>
+
+function calculate(){
+    sa = parseFloat (document.getElementById("startAmount").value);
+    inv = parseFloat (document.getElementById("investmentPerMonth").value);
+    r = parseFloat (document.getElementById("returns").value);
+    y = parseFloat (document.getElementById("yearsToInvest").value);
+
+    var rate = (r / 100) / 12;
+    var monthlyRate = rate / 12;
+
+    var totalMonthsSaved = y * 12;
+    var totalContribution = totalMonthsSaved * inv;
+    var totalInvested = sa + totalContribution;
+
+    var totalAmount = sa;
+            for (var i = 0; i <totalMonthsSaved; i++) {
+                totalAmount += inv;
+                totalAmount *= (1 + rate);
+            }
+
+    var totalReturn = totalAmount - totalInvested;
+
+    document.getElementById('ti').innerHTML = 'Total Invested Amount over ' + y + " years is <b>" + totalInvested.toFixed(2) + ' Euros</b>';
+    document.getElementById('tr').innerHTML = 'From that total amount, <b>' + totalReturn.toFixed(2) + ' Euros</b> were made';
+    document.getElementById('ta').innerHTML = 'Hence, the total amount after ' + y + " years is <b>" + totalAmount.toFixed(2) + ' Euros</b>'; 
+}
+</script>
+</html> 

@@ -1,0 +1,502 @@
+<html>
+    <head>
+        <title> Online Shop</title>
+        <style>
+            .heading {
+                text-align: center;
+                font-family: 'Trebuchet MS', sans-serif;
+                color: ghostwhite;
+                background-color: #666666;
+                border: 3px solid #535353;
+            }
+
+            .body {
+                background-color: #ffffff;
+            }   
+
+            .separator { /* visual separator for easier layout */
+                margin: 10px 0;
+                border: 1px solid #333;
+            }
+
+            .component{ /* design class for different types of computer components */
+                width: 75%;
+                height: 300px;
+                margin-bottom: 10px;
+                text-align: center;
+                background-color: #f1f1f1;
+                box-shadow: 1px 1px 3px #333;
+            }
+
+            .component-name{ /* design class for different types of computer components */
+                font-size: 25px;
+                font-family: Verdana, sans-serif;
+                margin-top: 10px;
+                text-align: center;
+                color: #3a3a3a;
+                text-shadow: 1px 1px 1px #333;
+            }
+
+            .component-items{ /* design class for different types of computer components */
+                height: 268px;
+                text-align: center;
+                overflow-x: auto;
+            }
+
+            .product{ /* design class for different computer components */
+                display: inline-block;
+                margin: 5px;
+                margin-bottom: 10px;
+                width: 22%;
+                height: 240px;
+                vertical-align: bottom;
+                padding: 5px;
+                position: relative;
+                border: 2px solid #ccc; 
+                text-align: center;
+                background-color: ghostwhite;
+                box-shadow: 1px 1px 3px #333;
+            }
+
+            .product-image {
+                width: 100%;
+                height: 50%;
+                vertical-align: top;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+
+            .product-description {
+                width: 100%;
+                height: 50%;
+                vertical-align: bottom;
+            }
+            
+            #cpu1{
+                background-image: url(https://media2.nbb-cdn.de/images/products/originals/BX8071514700K_13b2.jpg?size=200);
+            }
+
+            #cpu2{
+                background-image: url(https://media2.nbb-cdn.de/images/products/originals/BX8071514600K_1feb.jpg?size=200);
+            }
+
+            #cpu3{
+                background-image: url(https://media2.nbb-cdn.de/images/products/originals/Intel_i5_nonK_2_32c4.jpg?size=200);
+            }
+
+            #cpu4{
+                background-image: url(https://m.media-amazon.com/images/I/51nhikOfvxL._AC_SL1080_.jpg);
+            }
+
+            #cpu5{
+                background-image: url(https://media2.nbb-cdn.de/images/products/originals/Intel_i5_nonK_2_32c4.jpg?size=200);
+            }
+
+            #gpu1{
+                background-image: url(https://static.gigabyte.com/StaticFile/Image/Global/47cc2a5e55ccf61e8f7661906c1a9ce4/Product/21805/Png);
+            }
+
+            #gpu2{
+                background-image: url(https://m.media-amazon.com/images/I/61AfRpjteLL._AC_SL1000_.jpg);
+            }
+
+            #gpu3{
+                background-image: url(https://m.media-amazon.com/images/I/61NqolmqcIL._AC_SL1200_.jpg);
+            }
+
+            #ram1{
+                background-image: url(https://m.media-amazon.com/images/I/61j3CTxnXVL._AC_SL1280_.jpg);
+            }
+
+            #ram2{
+                background-image: url(https://m.media-amazon.com/images/I/71gBEg8+EML._AC_SL1500_.jpg);
+            }
+
+            #ram3{
+                background-image: url(https://m.media-amazon.com/images/I/61n-gmo9AuL._AC_SL1500_.jpg);
+            }
+
+            #ram4{
+                background-image: url(https://m.media-amazon.com/images/I/71U1CPGtQHL._AC_SL1500_.jpg);
+            }
+
+            #sto1{
+                background-image: url(https://m.media-amazon.com/images/I/71fFUd8uf3L._AC_SL1500_.jpg);
+            }
+
+            #sto2{
+                background-image: url(https://m.media-amazon.com/images/I/91RL+MhTWbL._AC_SL1500_.jpg);
+            }
+
+            #sto3{
+                background-image: url(https://m.media-amazon.com/images/I/51k5wAFZgFL._AC_SL1500_.jpg);
+            }
+
+            #sto4{
+                background-image: url(https://media.pangoly.com/img/4/1/9/c/419c8436-b947-4c5d-8aff-f61a4b0cefff.jpg);
+            }
+
+            #sto5{
+                background-image: url(https://m.media-amazon.com/images/I/71y5fqrichL._AC_SL1500_.jpg);
+            }
+
+            #sto6{
+                background-image: url(https://m.media-amazon.com/images/I/91-FIuGIF0L._AC_SL1500_.jpg);
+            }
+
+            #shoppingCart{ /* design for shopping cart tab */
+                position: fixed;
+                width: 22%; 
+                top: 68px;
+                right: 15px;
+                border: 1px solid #333;
+                padding: 10px;
+                text-align: left;
+                background-color: #f1f1f1;
+                box-shadow: 1px 1px 3px #333;
+            }
+
+            .price-text{ /* design of the 'price' for all product tabs */
+                position: absolute;
+                bottom: -5px;
+                left: 10px;
+            }
+
+            .addToCart-button{ /* design of the 'add to cart' button for all product tabs */
+                position: absolute;
+                bottom: 10px;
+                right: 10px;
+            }
+
+            .shoppingCartItemsList-text{ /* design of the 'shopping cart items' that shows on the shopping cart tab */
+                position: relative;
+                max-height: 70vh;  /* puts a limit on maximum height so the text does not extend out of the screen */
+                overflow-y: auto; /* automatically makes the item list scrollable */
+                margin-bottom: 10px;
+                margin-left: -30px;
+            }
+
+            .totalPrice-text{ /* design of 'total' price in the shopping cart tab */
+                position: relative; 
+                margin-bottom: -14px;
+                text-align: left;
+            }
+
+            .checkout-button{ /* design of the checkout button in the shopping cart tab */
+                position: absolute;
+                bottom: 10px;
+                right: 10px;
+            }   
+
+            .clearCart-button{ /* design of the 'clear cart' button in the shopping cart tab */
+                position: absolute;
+                bottom: 10px;
+                right: 90px;
+            }
+
+        </style>
+    </head>
+    <body class="body">
+
+        <h1 class="heading">Computer Components Shop</h1>
+       
+        <div class="component" id="cpu">
+            <div class="component-name">
+                CPU
+            </div>
+            <div class="component-items">
+                <div class="product"> 
+                    <div class="product-image" id="cpu1"></div>
+                    <div class="product-description">
+                     <h3>Intel Core i7-14700K</h3>
+                     <p>14th Gen</p>
+                      <p class="price-text">Price : 419,00€</p>
+                      <button class="addToCart-button" onclick="addToCart('Intel Core i7-14700K', 419.00)"> 
+                          Add to Cart
+                      </button>
+                    </div>
+                </div>
+
+                <div class="product"> 
+                    <div class="product-image" id="cpu2"></div>
+                    <div class="product-description">
+                        <h3>Intel Core i5-14600K</h3>
+                        <p>14th Gen</p>
+                        <p class="price-text">Price : 299,00€</p>
+                        <button class="addToCart-button" onclick="addToCart('Intel Core i5-14600K', 299.00)"> 
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <div class="product-image" id="cpu3"></div>
+                    <div class="product-description">
+                        <h3>Intel Core i5-12400</h3>
+                        <p>12th Gen</p>
+                        <p class="price-text">Price : 149,00€</p>
+                        <button class="addToCart-button" onclick="addToCart('Intel Core i5-12400', 149.00)"> 
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <div class="product-image" id="cpu4"></div>
+                    <div class="product-description">
+                        <h3>Intel Core i3-13100</h3>
+                        <p>13th Gen</p>
+                        <p class="price-text">Price : 152,00€</p>
+                        <button class="addToCart-button" onclick="addToCart('Intel Core i3-13100', 152.00)"> 
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+                <div class="product"> 
+                    <div class="product-image" id="cpu5"></div>
+                    <div class="product-description">
+                        <h3>Intel Core i5-14600K</h3>
+                        <p>14th Gen</p>
+                        <p class="price-text">Price : 299,00€</p>
+                        <button class="addToCart-button" onclick="addToCart('Intel Core i5-14600K', 299.00)"> 
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="component" id="gpu">
+            <div class="component-name">
+                GPU
+            </div>
+            <div class="component-items">
+                <div class="product">
+                    <div class="product-image" id="gpu1"></div>
+                    <div class="product-description">
+                        <h3>NVIDIA GeForce GTX1650</h3>
+                        <p> Graphics RAM 8GB</p>
+                        <p class="price-text">Price : 162,00€</p>
+                        <button class="addToCart-button" onclick="addToCart('NVIDIA GeForce GTX1650', 162.00)"> 
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <div class="product-image" id="gpu2"></div>
+                    <div class="product-description">
+                        <h3>NVIDIA GeForce RTX3060</h3>
+                        <p> Graphics RAM 12GB</p>
+                        <p class="price-text">Price : 282,00€</p>
+                        <button class="addToCart-button" onclick="addToCart('NVIDIA GeForce RTX3060', 282.00)"> 
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <div class="product-image" id="gpu3"></div>
+                    <div class="product-description">
+                        <h3>NVIDIA GeForce RTX4070</h3>
+                        <p> Graphics RAM 16GB</p>
+                        <p class="price-text">Price : 965,00€</p>
+                        <button class="addToCart-button" onclick="addToCart('NVIDIA GeForce RTX4070', 965.00)"> 
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="component" id="ram">
+            <div class="component-name">
+                RAM
+            </div>
+            <div class="component-items">
+                <div class="product">
+                    <div class="product-image" id="ram1"></div>
+                    <div class="product-description">
+                        <h3>Crucial 8GB Memory</h3>
+                        <p>DDR4 3200 MHz</p>
+                        <p class="price-text">Price : 19,00€</p>
+                        <button class="addToCart-button" onclick="addToCart('Crucial 8GB Memory', 19.00)"> 
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <div class="product-image" id="ram2"></div>
+                    <div class="product-description">
+                        <h3>Samsung 8GB Memory</h3>
+                        <p>DDR3 1600 MHz</p>
+                        <p class="price-text">Price : 25,00€</p>
+                        <button class="addToCart-button" onclick="addToCart('Samsung 8GB Memory', 25.00)"> 
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <div class="product-image" id="ram3"></div>
+                    <div class="product-description">
+                        <h3>Lexar 16GB Memory</h3>
+                        <p>DDR4 3200 MHz</p>
+                        <p class="price-text">Price : 36,00€</p>
+                        <button class="addToCart-button" onclick="addToCart('Lexar 16GB Memory', 36.00)"> 
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <div class="product-image" id="ram4"></div>
+                    <div class="product-description">
+                        <h3>Integral 16GB Memory</h3>
+                        <p>DDR4 2666 MHz</p>
+                        <p class="price-text">Price : 32,00€</p>
+                        <button class="addToCart-button" onclick="addToCart('Integral 16GB Memory', 32.00)"> 
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="component" id="sto">
+            <div class="component-name">
+                Storage
+            </div>
+            <div class="component-items">
+                <div class="product">
+                    <div class="product-image" id="sto1"></div>
+                    <div class="product-description">
+                        <h3>Samsung 990 PRO 2TB</h3>
+                        <p>PCle 4.0 NVMe</p>
+                        <p class="price-text">Price : 179,00€</p>
+                        <button class="addToCart-button" onclick="addToCart('Samsung 990 PRO 2TB', 179.00)"> 
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <div class="product-image" id="sto2"></div>
+                    <div class="product-description">
+                        <h3>Kingston A400 480GB</h3>
+                        <p>2.5" SATA III</p>
+                        <p class="price-text">Price : 37,00€</p>
+                        <button class="addToCart-button" onclick="addToCart('Kingston A400 480GB', 37.00)"> 
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <div class="product-image" id="sto3"></div>
+                    <div class="product-description">
+                        <h3>Crucial P3 Plus 1TB</h3>
+                        <p>PCle 4.0 NVMe</p>
+                        <p class="price-text">Price : 79,00€</p>
+                        <button class="addToCart-button" onclick="addToCart('Crucial P3 Plus 1TB', 79.00)"> 
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <div class="product-image" id="sto4"></div>
+                    <div class="product-description">
+                        <h3>WD Blue SA510 1TB</h3>
+                        <p>2.5" SATA III</p>
+                        <p class="price-text">Price : 69,00€</p>
+                        <button class="addToCart-button" onclick="addToCart('WD Blue SA510 1TB', 69.00)"> 
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <div class="product-image" id="sto5"></div>
+                    <div class="product-description">
+                        <h3>WD BLACK SN770 1TB</h3>
+                        <p>PCle 4.0 NVMe SSD</p>
+                        <p class="price-text">Price : 73,00€</p>
+                        <button class="addToCart-button" onclick="addToCart('WD BLACK SN770 1TB', 73.00)"> 
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <div class="product-image" id="sto6"></div>
+                    <div class="product-description">
+                        <h3>Lexar NS100 512GB</h3>
+                        <p>2.5" SATA III</p>
+                        <p class="price-text">Price : 39,00€</p>
+                        <button class="addToCart-button" onclick="addToCart('Lexar NS100 512GB', 39.00)"> 
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+
+        <div id = "shoppingCart"> <!-- tab for the shopping cart -->
+            <h2>Shopping Cart</h2>
+            <div class="separator"></div>
+            <ul class="shoppingCartItemsList-text" id="shoppingCart-Items">No Items</ul> <!-- lists the items added to the shopping cart, list of items gotten from "shoppingCart-Items" -->
+            <div class="separator"></div>
+            <p class="totalPrice-text">
+                Total : <span id="totalPrice">0.00</span> Euros <!-- shows the total price of all the products added to the shopping cart, value gotten from "totalPrice" -->
+            </p>
+
+            <p>
+                <button class="checkout-button" onclick="checkout()">Checkout</button> <!-- button to purchase the products in the shopping cart -->
+                <button class="clearCart-button" onclick="clearCart()">Clear Cart</button> <!-- button to clear all items added to the shoppng cart -->
+            </p>
+        </div>
+        
+        <script>
+            var shoppingCart = []; /* declare an array for shopping cart */
+            var totalPrice = 0; /* declare variable total price */
+
+            function addToCart(product, priceOfProduct) { /* function when clicking the 'add to cart' button in the product tabs, the values of 'product' and 'priceOfProduct' is required */
+                shoppingCart.push({product: product, priceOfProduct: priceOfProduct}); /* it updates the value of 'product' and 'price of product' with the values declared within the parenthesis */
+                updateShoppingCart(); /* updates the shopping cart list */
+            }
+
+            function updateShoppingCart() { /* function to update the shopping cart */
+                var shoppingCartItems = document.getElementById("shoppingCart-Items"); /* variable declared that is in association with "shoppingCart-Items" */
+                var total = document.getElementById("totalPrice"); /* variable declared that is in association with "totalPrice" */
+
+                shoppingCartItems.innerHTML = ""; /* clears the value of 'shoppingCartItems' */
+
+                shoppingCart.forEach(item => { /* function to be run for each different item */
+                    var info = document.createElement("info"); /* create a variable "info" */
+                    info.innerHTML = `${item.product} - ${item.priceOfProduct.toFixed(2)/* fix to two decimal places */} Euros <br>`; /* update the variable "info" to show the name of the product and the price of the product */
+                    shoppingCartItems.appendChild(info); /* adds the value of "info" into the variable "shoppingCartItems" on top of the already existing values */
+                });
+
+                totalPrice = shoppingCart.reduce((sum, item) => sum + item.priceOfProduct, 0); /* add up the price of each product, it goes through the array "shoppingCart" which contains "item", it starts from the value 0 and adds the price of each product to the sum*/
+                total.textContent = totalPrice.toFixed(2); /* updates the value shown to the value of "totalPrice" */
+            }
+
+            function checkout() { /* function called when clicking on the 'checkout' button */
+                alert("You will be redirected to the transaction of " + totalPrice.toFixed(2)+ " Euros");
+            }
+
+            function clearCart() { /* function called when clicking on the 'clear cart' button */
+                shoppingCart = []; /* erases all values within the array "shopping cart" */
+                updateShoppingCart(); /* updates the shopping cart list */
+            }
+
+        </script>
+
+    </body>
+
+</html>
